@@ -1,0 +1,15 @@
+# static configuration
+# traefik.toml
+
+[entrypoints]
+  [entrypoints.web]
+    address = ":80"
+
+  [entrypoints.websecure]
+    address = ":443"
+
+[providers]
+  [providers.docker]
+
+  [providers.file]
+    filename = "/etc/traefik/dyn.toml"

@@ -1,0 +1,12 @@
+# dynamic configuration
+# dyn.toml
+
+[tls.options]
+
+  [tls.options.default]
+    minVersion = "VersionTLS12"
+    sniStrict = true
+
+[[tls.certificates]]
+  certFile = "/data/traefik/traefik-https-demo.localhost.cert"
+  keyFile = "/data/traefik/traefik-https-demo.localhost.key"

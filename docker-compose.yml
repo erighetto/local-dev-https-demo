@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+  php:
+    image: erighetto/drupal-dev
+    container_name: "${PROJECT_NAME}_php"
+    depends_on:
+      - mailhog
+    volumes:
+      - "./docroot:/var/www/html"
+    environment:
+      WEB_DOCUMENT_ROOT: "/var/www/html"
+      PHP_IDE_CONFIG: "serverName=localhost"
+      POSTFIX_RELAYHOST: "${PROJECT_NAME}_mailhog:1025"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.${PROJECT_NAME}-redirect-websecure.redirectscheme.scheme=https"
+      - "traefik.http.routers.${PROJECT_NAME}-web.middlewares=${PROJECT_NAME}-redirect-websecure"
+      - "traefik.http.routers.${PROJECT_NAME}-web.rule=Host(`${PROJECT_BASE_URL}`)"
+      - "traefik.http.routers.${PROJECT_NAME}-web.entrypoints=web"
+      - "traefik.http.routers.${PROJECT_NAME}-websecure.rule=Host(`${PROJECT_BASE_URL}`)"
+      - "traefik.http.routers.${PROJECT_NAME}-websecure.tls=true"
+      - "traefik.http.routers.${PROJECT_NAME}-websecure.entrypoints=websecure"
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: "${PROJECT_NAME}_mailhog"
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  traefik:
+    image: traefik:v2.0
+    container_name: "${PROJECT_NAME}_traefik"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./traefik/traefik.toml:/etc/traefik/traefik.toml"
+      - "./traefik/dyn.toml:/etc/traefik/dyn.toml"
+      - "./traefik/traefik-https-demo.localhost.pem:/data/traefik/traefik-https-demo.localhost.cert"
+      - "./traefik/traefik-https-demo.localhost-key.pem:/data/traefik/traefik-https-demo.localhost.key"
