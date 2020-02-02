@@ -1,8 +1,9 @@
 #Traefik as router
+In this example we have Traefik as router: Traefik load self signed certificates and redirect all traffic to docker service.
 
 ## Docker 
 The [.env](.env) file, is only used during a pre-processing step when working with [docker-compose.yml](docker-compose.yml)  files. Dollar-notation variables like $PROJECT_NAME are substituted for values contained in an “.env” named file in the same directory.
-All the magic is in [label](https://github.com/erighetto/traefik-https-demo/blob/master/docker-compose.yml#L15) section of **php** service. We set up a middleweare that redirect http to https.
+All the magic is in [label](https://github.com/erighetto/local-dev-https-demo/blob/master/traefik-https/docker-compose.yml#L15) section of **php** service. We set up a middleweare that redirect http to https.
 
       - "traefik.enable=true"  
       - "traefik.http.middlewares.${PROJECT_NAME}-redirect-websecure.redirectscheme.scheme=https"  
