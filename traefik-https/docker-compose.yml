@@ -2,16 +2,16 @@ version: '3'
 
 services:
 
-  php:
+  web-php:
     image: erighetto/drupal-dev
     container_name: "${PROJECT_NAME}_php"
     depends_on:
       - mailhog
     volumes:
-      - "./docroot:/var/www/html"
+      - "./docroot:${WEB_DOCUMENT_ROOT}"
     environment:
-      WEB_DOCUMENT_ROOT: "/var/www/html"
-      PHP_IDE_CONFIG: "serverName=localhost"
+      WEB_DOCUMENT_ROOT: "${WEB_DOCUMENT_ROOT}"
+      PHP_IDE_CONFIG: "${PHP_IDE_CONFIG}"
       POSTFIX_RELAYHOST: "${PROJECT_NAME}_mailhog:1025"
     labels:
       - "traefik.enable=true"
@@ -42,3 +42,5 @@ services:
       - "./traefik/dyn.toml:/etc/traefik/dyn.toml"
       - "./traefik/traefik-https-demo.localhost.pem:/data/traefik/traefik-https-demo.localhost.cert"
       - "./traefik/traefik-https-demo.localhost-key.pem:/data/traefik/traefik-https-demo.localhost.key"
+    depends_on:
+      - web-php

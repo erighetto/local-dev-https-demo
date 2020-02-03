@@ -11,7 +11,7 @@ services:
       - "./docroot:${WEB_DOCUMENT_ROOT}"
     environment:
       WEB_DOCUMENT_ROOT: "${WEB_DOCUMENT_ROOT}"
-      PHP_IDE_CONFIG: "serverName=localhost"
+      PHP_IDE_CONFIG: "${PHP_IDE_CONFIG}"
       POSTFIX_RELAYHOST: "${PROJECT_NAME}_mailhog:1025"
 
   mailhog:
@@ -30,7 +30,5 @@ services:
       - "./nginx/nginx-https-demo.localhost.pem:/etc/nginx/ssl/nginx-https-demo.localhost.crt"
       - "./nginx/nginx-https-demo.localhost-key.pem:/etc/nginx/ssl/nginx-https-demo.localhost.key"
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
-    links:
-      - web-php
     depends_on:
       - web-php
