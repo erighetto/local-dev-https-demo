@@ -1,4 +1,4 @@
-#Nginx as reverse proxy
+# Nginx as reverse proxy  
 In this example we have Nginx as reverse proxy: Nginx load self signed certificates and redirect all traffic to docker service.
 
 ## Docker 
