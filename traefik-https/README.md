@@ -17,4 +17,4 @@ All the magic is in [label](https://github.com/erighetto/local-dev-https-demo/bl
   
 ## Traefik  
 Static configurations are in [traefik/traefik.toml](traefik/traefik.toml).  
-Dynamic configurations are in [traefik/dyn.toml](traefik/dyn.toml), here you can set what certificates Traefik have to load.
+Dynamic configurations are in [traefik/dyn.toml](traefik/dyn.toml), here you can set which certificates Traefik have to load.
