@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="php@c35121de-6b59-443c-9df6-57514f95ace9">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$/traefik-https/docroot" remote-root="/var/www/html" />
+              <mapping local-root="$PROJECT_DIR$/nginx-https/docroot" remote-root="/var/www/html" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>
