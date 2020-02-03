@@ -1,4 +1,4 @@
-#Traefik as router
+# Traefik as router  
 In this example we have Traefik as router: Traefik load self signed certificates and redirect all traffic to docker service.
 
 ## Docker 
