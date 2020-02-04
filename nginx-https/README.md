@@ -6,5 +6,5 @@ The [.env](.env) file, is only used during a pre-processing step when working wi
 
 ## Nginx 
 Static configurations are in [nginx/nginx.conf](nginx/nginx.conf).  
-Note that [certificates](nginx/nginx.conf#L23) are the same declared on [docker-compose volumes](nginx-https/docker-compose.yml#L30).  
+Note that [certificates](nginx/nginx.conf#L23) are the same declared on [docker-compose volumes](docker-compose.yml#L30).  
 Also note that the [service behind proxy](nginx/nginx.conf#L32) has the same name of the [docker-compose service](docker-compose.yml#L5).
